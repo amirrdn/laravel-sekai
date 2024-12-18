@@ -1,0 +1,14 @@
+authtoken: 2oe5iBlI5hT5HJf3x0OQL0XkbDy_7YsdveFWWmvj3Yq5Bguxi
+region: in   # Pilih region terdekat (us, eu, ap, au, sa, jp, in)
+tunnels:
+  laravel:
+    proto: http
+    addr: 8000
+    host_header: rewrite
+    inspect: true  # Opsional: Aktifkan inspeksi HTTP untuk debug
+  laravel-custom-domain:
+    proto: http
+    addr: 8002
+    hostname: sekai.app
+    host_header: rewrite
+    inspect: true

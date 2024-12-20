@@ -1,0 +1,11 @@
+app = "laravel-qrcode"
+
+[build]
+  # Gunakan buildpack PHP
+  builder = "heroku/buildpacks:20"
+
+[[services]]
+  internal_port = 80
+  protocol = "tcp"
+  [[services.ports]]
+    port = "80"

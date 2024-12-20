@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['serial_number', 'store_id', 'product_name', 'scanned_at'];
+    
+    protected $fillable = ['serial_number', 'store_id', 'product_name', 'item_id'];
 
     public function store()
     {

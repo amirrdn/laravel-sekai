@@ -54,6 +54,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
+        
         return view('users.edit', compact('user', 'roles'));
     }
 
@@ -62,15 +63,12 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'phone_number' => 'nullable|string|max:15',
-            'city' => 'nullable|string|max:50',
             'password' => 'nullable|string|min:8',
             'role_id' => 'required|exists:roles,id',
         ]);
-
         $data = $request->only(['name', 'email', 'phone_number', 'city', 'role_id']);
         if ($request->filled('password')) {
-            $data['password'] = Hash::make($request->password);
+            $data['password'] = \Hash::make($request->password);
         }
 
         $user->update($data);

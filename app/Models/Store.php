@@ -17,4 +17,12 @@ class Store extends Model
     public function type(){
         return $this->belongsTo(StoreType::class, 'type_id');
     }
+    public function files()
+    {
+        return $this->hasMany(StoreFile::class, 'store_id', 'id');
+    }
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

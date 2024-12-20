@@ -18,7 +18,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $stores = Store::all();
+        $stores = Store::with(['type', 'user'])->get();
 
         return view('stores.index', compact('stores'));
     }

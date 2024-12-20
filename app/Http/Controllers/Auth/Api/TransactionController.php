@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Transaction;
 
+use Illuminate\Support\Facades\Validator;
+
 class TransactionController extends Controller
 {
     public function index()
@@ -16,8 +18,26 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'item_id' => 'required|exists:items,id',
+            'store_id' => 'required|exists:stores,id',
+            'product_name' => 'required|string',
+            'serial_number' => 'required|string',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+    
         $transaction = Transaction::create($request->all());
-        return response()->json($transaction, 201);
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Transaksi berhasil dibuat',
+            'data' => $transaction
+        ], 200);
     }
     public function validateQR(Request $request)
     {

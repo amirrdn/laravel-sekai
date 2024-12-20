@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Exceptions\Handler as CustomHandler;
 use Illuminate\Foundation\Application;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,10 +13,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(
-            \Illuminate\Contracts\Debug\ExceptionHandler::class,
-            CustomHandler::class
-        );
     }
 
     /**
@@ -25,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // if (app()->environment('local')) {
+        //     \URL::forceScheme('https');
+        // }
     }
 }

@@ -24,9 +24,22 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
+        try {
+            // Cek autentikasi login
+            $request->authenticate();
+    
+            // Regenerasi session setelah login berhasil
+            $request->session()->regenerate();
+    
+        } catch (ValidationException $e) {
+            dd($e);
+            return redirect()->route('login')->withErrors(['email' => 'Invalid credentials.']);
+        }
+    
+        if (Auth::user()->role_id !== 1) {
+            Auth::logout();  // Logout user yang memiliki role_id selain 1
+            return redirect()->route('login')->withErrors(['email' => 'You do not have the required role to log in.']);
+        }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

@@ -74,5 +74,14 @@
             </div>
         </form>
     </div>
-    
+    @push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $('select').select2({
+                placeholder: 'Select data',
+                allowClear: true
+            });
+        });
+    </script>
+    @endpush
 </x-app-layout>

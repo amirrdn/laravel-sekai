@@ -20,10 +20,19 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::with('store.type')->where('email', $request->email)->first();
-        if ($user && Hash::check($request->password, $user->password)) {
-            $token = $user->createToken('api-token')->plainTextToken;
+        $user = User::with(['store.type', 'store.files'])->where('email', $request->email)->first();
 
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        if ($user->status == 0) {
+            return response()->json(['message' => 'Status kepersertaan belum aktif'], 401);
+        }
+
+        if (\Hash::check($request->password, $user->password)) {
+            $token = $user->createToken('api-token')->plainTextToken;
+    
             return response()->json([
                 'status' => 'success',
                 'message' => 'Login successful',
@@ -32,7 +41,6 @@ class AuthController extends Controller
                 'type' => 'user',
             ]);
         }
-
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
     public function changePassword(Request $request)

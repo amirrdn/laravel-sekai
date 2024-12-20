@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('serial_number', 50);
             $table->unsignedBigInteger('store_id');
+            $table->unsignedBigInteger('item_id');
             $table->string('product_name', 100);
             $table->timestamps();
 
             $table->foreign('store_id')->references('id')->on('stores')
                 ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('item_id')->references('id')->on('items')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

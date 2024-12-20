@@ -15,5 +15,30 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->renderable(function (Throwable $e, $request) {
+            if ($request->expectsJson()) {
+                // Jika terjadi error autentikasi
+                if ($exception instanceof \Illuminate\Auth\AuthenticationException) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Unauthenticated.',
+                    ], 401);
+                }
+
+                // Jika terjadi error validasi
+                if ($exception instanceof \Illuminate\Validation\ValidationException) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Validation Error',
+                        'errors' => $exception->errors(),
+                    ], 422);
+                }
+
+                // Error lainnya
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $exception->getMessage(),
+                ], 500);
+            }
+        });
     })->create();

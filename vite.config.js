@@ -8,6 +8,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        outDir: 'public/dist', // Pastikan output directory ada di dalam folder public
+        rollupOptions: {
+          input: 'resources/js/app.js', // Path file entrypoint JS Anda
+        },
+      },
     resolve: {
         alias: {
             '$':  'jQuery',

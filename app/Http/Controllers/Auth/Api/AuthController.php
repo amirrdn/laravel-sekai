@@ -30,9 +30,13 @@ class AuthController extends Controller
             return response()->json(['message' => 'Status kepersertaan belum aktif'], 401);
         }
 
+        
+
         if (\Hash::check($request->password, $user->password)) {
             $token = $user->createToken('api-token')->plainTextToken;
-    
+            if($user->role_id == 1){
+                return response()->json(['message' => 'Fitur ini hanya Member yang dapat diakses'], 404);
+            }
             return response()->json([
                 'status' => 'success',
                 'message' => 'Login successful',

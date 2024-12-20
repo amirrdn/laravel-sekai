@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         Users
                     </x-nav-link>
+                    <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
+                        Barang
+                    </x-nav-link>
                     <x-nav-link :href="route('stores.index')" :active="request()->routeIs('stores.index')">
                         Toko
                     </x-nav-link>

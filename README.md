@@ -40,10 +40,10 @@
    ```bash
    php artisan db:seed --class=StoreTypeSeeders
    ```
-6 Run Vite Development Server
-  ```
-  npm run dev
-  ```
+6. Run Vite Development Server
+   ```
+   npm run dev
+   ```
 7. Run Project
    ```
    php artisan serve

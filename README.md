@@ -7,6 +7,22 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Tables
+
+Run Seeders for table Roles, Admin Users & Store Type:
+
+1. Run seeder Roles:
+    ```bash
+    php artisan db:seed --class=RoleSeeder
+    ```
+2. Run seeder Admin User:
+    ```bash
+    php artisan db:seed --class=AdminUserSeeder
+    ```
+3. Run seeder Store Type:
+   ```bash
+   php artisan db:seed --class=StoreTypeSeeders
+   ```
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

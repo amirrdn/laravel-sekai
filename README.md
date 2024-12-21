@@ -7,22 +7,48 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Tables
 
-Run Seeders for table Roles, Admin Users & Store Type:
+## Run Project
 
-1. Run seeder Roles:
+1. Install Dependency
+   ```
+   composer install
+   ```
+2. Install Dependency Javascript with NPM or Yarn
+   ```
+   npm install
+   ```
+3. Copy file .env
+   ```
+   cp .env.example .env
+   ```
+4. Run migrations
+   ```
+   php artisan migrate
+   ```
+5. Run Seeders for table Roles, Admin Users & Store Type:
+
+    Run seeder Roles:
     ```bash
     php artisan db:seed --class=RoleSeeder
     ```
-2. Run seeder Admin User:
+    Run seeder Admin User:
     ```bash
     php artisan db:seed --class=AdminUserSeeder
     ```
-3. Run seeder Store Type:
+    Run seeder Store Type:
    ```bash
    php artisan db:seed --class=StoreTypeSeeders
    ```
+6 Run Vite Development Server
+  ```
+  npm run dev
+  ```
+7. Run Project
+   ```
+   php artisan serve
+   ```
+   
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
